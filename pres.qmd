@@ -1,0 +1,227 @@
+---
+# title: "modelo de innominación de documento"
+# author: "Abril 2024"
+format:
+  revealjs:
+    auto-stretch: false
+    margin: 0
+    slide-number: true
+    scrollable: true
+    preview-links: auto
+    logo: imagenes/logo_portada2.png
+    css: ine_quarto_styles.css
+    # footer: <https://quarto.org>
+---
+
+#
+
+
+<!---
+# TODO: this does not work
+ ![](imagenes/logo_portada2.png){.center style="width: 20%;"}   
+--->
+
+[]{.linea-superior} 
+[]{.linea-inferior} 
+
+<!---
+ <img src="imagenes/logo_portada2.png" style="width: 20%"/>  
+--->
+
+<img src="imagenes/logo_portada2.png" width="20%"/>  
+
+
+[**Ciencia de datos para el sector público:**]{.big-par .center-justified}
+[**Modelo de innominación de documentos**]{.big-par .center-justified}
+[**Proyecto Ciencia de Datos**]{.medium-par.center-justified}
+
+[**Abril 2024**]{.big-par .center-justified}
+
+
+## Contenidos  
+
+<!---
+Presentacion falseamiento
+- estadisticas descriptivas (por bloques)
+- descripcion de variables y modelos (+ metricas)
+- analisis de resultados de las predicciones (tablas con proporciones para ver supervision final)
+ --->
+
+::: {.incremental}
+
+- Problemática 📄🤔
+
+- Modelamiento 🛠️
+
+  - Descripción modelo YOLOv5
+  
+  - Entrenamiento
+  
+  - Innominación de informes
+  
+
+- juane: Aplicación, flask, docker, cosas de hacker... 
+
+
+:::
+
+
+<!---
+ ![](imagenes/overview-mode.png){.border} 
+
+--->
+
+## Problemática (1/)
+
+:::{.incremental }
+
+- Por ley de transparencia activa, los órganos y servicios gubernamentales deben publicar las funciones administrativas del personal de planta, a contrata y el que se desempeñe en virtud de un contrato de trabajo, y contratadas a honorarios.
+
+- En el caso del personal con contrato a honorarios, estos deben realizar mensualmente un informe de cumplimiento, en donde se describen las actividades realizas durante el mes.
+
+- En estos documentos, existe información confidencial de las personas: el RUN (Rol Único Nacional) y firma, los cuales deben ser censurados en la publicación.
+
+:::
+
+## Problemática (2/)
+
+Ejemplo informe de cumplimiento:
+
+[<img src="imagenes/plots/informe_yo.jpg" width="70%"/>]{.center} 
+
+
+## Problemática (3/)
+
+. . .
+
+:::{.incremental .medium-par}
+
+- Cantidad de personas a contrata en el INE:
+
+    |Antes de CENSO| Durante de CENSO|
+    |---|---|
+    |256| PREGUNTAR |
+
+- Lo cual se transforma en un trabajo manual muy extenso para la unidad de transparencia y atención ciudadana del INE.
+
+:::
+
+<br>
+
+. . . 
+
+[¿Cómo innominamos estos documentos?]{.center} 
+
+. . .
+
+[¡Creación de modelo de deep learning que detecte y censure el RUN y firmas 😃!]{.center} 
+
+
+## Modelamiento | Descripción modelo YOLOv5
+
+:::{.incremental}
+
+- El modelo YOLOv *You Only Look Once*, es un modelo de detección de objetos proveniente del paquete *Ultralytics*, diseñado con deep learning. 
+
+- Este modelo pre-entrenado posee diferentes versiones:
+
+    [<img src="imagenes/plots/model_comparison.png" width="70%"/>]{.center}
+    
+- Toda la información disponible la pueden encontrar en su repositorio de [github](https://github.com/ultralytics/yolov5)
+
+:::
+
+<br>
+
+
+## Modelamiento | Entrenamiento
+
+Para entrenar el modelo, se siguieron los siguientes pasos:
+
+. . .
+
+:::{.incremental .medium-par}
+
+- **Paso 1**: Procesar informe
+
+  - Transformar el formato de pdf a imagen.
+  
+  
+- **Paso 2**: Etiquetar imágenes
+
+  - Para el etiquetado de imágenes se utilizó la aplicación [*make-sense*](https://github.com/SkalskiP/make-sense?tab=readme-ov-file), la cual podemos utilizar desde nuestro navegador o ejecutarlo en local.
+  
+  - Las ventajas de esta aplicación es que es de libre uso, el formato de etiquetado es compatible con el requerido para entrenar el modelo YOLOv5 y es de fácil uso.
+  
+  - Se etiquetaron al rededor de 1000 imágenes. 
+  
+- **Paso 3**: Setting del modelo.*
+
+:::
+
+. . .
+
+<br>
+
+[*Para más información de como entrenar modelos YOLOv, visitar el siguiente [link](https://docs.ultralytics.com/es/yolov5/tutorials/train_custom_data/)]{.small-par}
+
+
+## Modelamiento | Innominación de informes (1/)
+
+Una vez entrenado el modelo, la metodología para realizar la innominación sigue el siguiente flujo:
+
+. . .
+
+:::{.incremental .medium-par}
+
+- **Paso 1**: Procesar informe
+
+  - Transformar el formato de pdf a imagen.
+  
+  
+- **Paso 2**: Identificar RUN y firmas
+
+  - Para cada conjunto de imágenes de un informe, se identificaran las firmas y el run.
+  
+  - Una vez identificada la sección donde están los objetos, se ocultarán las secciones con un rectángulo negro.
+  
+  - En cada uno de los informes, en total debe existir un run y 2 firmas. En el caso de no cumplir esta condición, se etiquetará el documento como *informe dudoso* y se registrará para que el equipo encargado realice la revisión manual.
+  
+- **Paso 3**: Transformar el informe a su formato original
+
+  - Realizar unión de imágenes y generar pdf.
+
+:::
+
+## Modelamiento | Innominación de informes (2/)
+
+Ejemplo de innominación: 
+
+[Juane ¿Se podrá hacer en vivo?]{.big-par}
+
+<!-- https://www.portaltransparencia.cl/PortalPdT/directorio-de-organismos-regulados/?org=AH007 -->
+
+## juane
+
+
+
+
+
+#
+
+[<img src="imagenes/logo_portada2.png" width="20%"/>]{.center}
+
+
+[**Ciencia de datos para el sector público:**]{.big-par .center-justified}
+[**Modelo de innominación de documentos**]{.big-par .center-justified}
+[**Proyecto Ciencia de Datos**]{.medium-par.center-justified}
+
+[**Abril 2024**]{.big-par .center-justified}
+
+
+
+[]{.linea-superior} 
+[]{.linea-inferior} 
+
+
+
