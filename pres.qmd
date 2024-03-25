@@ -60,8 +60,13 @@ Presentacion falseamiento
   - Innominación de informes
   
 
-- juane: Aplicación, flask, docker, cosas de hacker... 
+- Empaquetado 📦
 
+  - Estructura
+  
+  - Aplicación
+  
+  - Ejemplo de uso
 
 :::
 
@@ -193,16 +198,22 @@ Una vez entrenado el modelo, la metodología para realizar la innominación sigu
 
 :::
 
-## Modelamiento | Innominación de informes (2/)
 
-Ejemplo de innominación: 
+## Empaquetado | Estructura
 
-[Juane ¿Se podrá hacer en vivo?]{.big-par}
+
+[<img src="imagenes/diagrama.png" width="100%"/>]{.center} 
+
+
+
+
+## Empaquetado | Ejemplo de uso
+
+Veamos en vivo un ejemplo de uso:
+
+< Link a app en intranet INE>
 
 <!-- https://www.portaltransparencia.cl/PortalPdT/directorio-de-organismos-regulados/?org=AH007 -->
-
-## juane
-
 
 
 
