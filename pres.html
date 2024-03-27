@@ -370,8 +370,8 @@ Presentacion falseamiento
 
 --->
 </section>
-<section id="problemática-1" class="slide level2">
-<h2>Problemática (1/)</h2>
+<section id="problemática-13" class="slide level2">
+<h2>Problemática (1/3)</h2>
 <div>
 <ul>
 <li class="fragment"><p>Por ley de transparencia activa, los órganos y servicios gubernamentales deben publicar las funciones administrativas del personal de planta, a contrata y el que se desempeñe en virtud de un contrato de trabajo, y contratadas a honorarios.</p></li>
@@ -380,31 +380,32 @@ Presentacion falseamiento
 </ul>
 </div>
 </section>
-<section id="problemática-2" class="slide level2">
-<h2>Problemática (2/)</h2>
+<section id="problemática-23" class="slide level2">
+<h2>Problemática (2/3)</h2>
 <p>Ejemplo informe de cumplimiento:</p>
 <p><span class="center"><img src="imagenes/plots/informe_yo.jpg" width="70%"></span></p>
 </section>
-<section id="problemática-3" class="slide level2">
-<h2>Problemática (3/)</h2>
+<section id="problemática-33" class="slide level2">
+<h2>Problemática (3/3)</h2>
 <div class="fragment">
 <div class="medium-par">
 <ul>
-<li class="fragment"><p>Cantidad de personas a contrata en el INE:</p>
+<li class="fragment"><p>Cantidad de informes de cumplimiento de honorarios en el INE:</p>
 <table>
 <thead>
 <tr class="header">
 <th>Antes de CENSO</th>
-<th>Durante de CENSO</th>
+<th>Durante de CENSO*</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>256</td>
-<td>PREGUNTAR</td>
+<td>878</td>
 </tr>
 </tbody>
-</table></li>
+</table>
+<p><span class="small-par center">* <em>Cantidad identificada durante febrero</em></span></p></li>
 <li class="fragment"><p>Lo cual se transforma en un trabajo manual muy extenso para la unidad de transparencia y atención ciudadana del INE.</p></li>
 </ul>
 </div>
@@ -454,8 +455,8 @@ Presentacion falseamiento
 <p><span class="small-par">*Para más información de como entrenar modelos YOLOv, visitar el siguiente <a href="https://docs.ultralytics.com/es/yolov5/tutorials/train_custom_data/">link</a></span></p>
 </div>
 </section>
-<section id="modelamiento-innominación-de-informes-1" class="slide level2">
-<h2>Modelamiento | Innominación de informes (1/)</h2>
+<section id="modelamiento-innominación-de-informes" class="slide level2">
+<h2>Modelamiento | Innominación de informes</h2>
 <p>Una vez entrenado el modelo, la metodología para realizar la innominación sigue el siguiente flujo:</p>
 <div class="fragment">
 <div class="medium-par">
@@ -552,6 +553,16 @@ Presentacion falseamiento
 <ul>
 <li class="fragment">MinIO actúa como capa de almacenamiento, por lo que aloja los archivos .zip que contienen los informes anonimizados.</li>
 <li class="fragment">Además, nos permite compartir un link de descarga que expira luego de un tiempo fijado por nosotros.</li>
+</ul>
+</div>
+</section>
+<section id="conclusiones" class="slide level2 medium-par">
+<h2>Conclusiones</h2>
+<div>
+<ul>
+<li class="fragment"><p>Aprovechando los avances en visión de computadores y la capacidad de <em>fine-tuning</em> de estos modelos, pudimos entrenar uno que realiza esta tarea específica con alta precisión.</p></li>
+<li class="fragment"><p>Utilizando una arquitectura sencilla fue posible empaquetar el modelo, facilitando su ejecución a los usuarios finales.</p></li>
+<li class="fragment"><p>Considerando que es un problema que podrían tener otras instituciones, el modelo tiene potencial de ser escalado.</p></li>
 </ul>
 </div>
 </section></section>
