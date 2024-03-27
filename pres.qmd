@@ -62,11 +62,11 @@ Presentacion falseamiento
 
 - Empaquetado 📦
 
+  - Ejemplo de uso
+
   - Estructura
   
-  - Aplicación
-  
-  - Ejemplo de uso
+
 
 :::
 
@@ -199,22 +199,106 @@ Una vez entrenado el modelo, la metodología para realizar la innominación sigu
 :::
 
 
+## Empaquetado | Ejemplo de uso
+
+Primero, veamos en vivo cómo funciona la aplicación:
+
+< Insertar link a app en intranet INE (requerirá VPN)>
+
+<!-- https://www.portaltransparencia.cl/PortalPdT/directorio-de-organismos-regulados/?org=AH007 -->
+
+::: notes
+
+- Mostrar informes de cumplimiento
+- Mostrar aplicación
+- Mostrar logs
+
+:::
+
+
 ## Empaquetado | Estructura
 
 
 [<img src="imagenes/diagrama.png" width="100%"/>]{.center} 
 
 
+## Empaquetado | Estructura: Flask {.medium-par}
 
 
-## Empaquetado | Ejemplo de uso
+![](imagenes/flask-logo.png){.float-right width=25%  }
 
-Veamos en vivo un ejemplo de uso:
 
-< Link a app en intranet INE>
 
-<!-- https://www.portaltransparencia.cl/PortalPdT/directorio-de-organismos-regulados/?org=AH007 -->
+- Flask es un _microframework_ para desarrollo web de backend, famoso por ser sencillo, liviano y flexible. Es la base de otros frameworks más complejos como FastAPI.
 
+- Flask funciona como backend de la aplicación, comunicándose con el frontend y manejando
+las lógicas de la aplicación: subida y extracción de informes, manejo de errores y éxitos,
+gestión de requests del cliente.
+
+- Una vez extraidos los informes, ocurren dos cosas: se da inicio a la _task_ que se encarga
+de anonimizar los informes y se le da fin al request, idealmente, con un mensaje de éxito.
+
+- La _task_ es manejada por Celery y Redis
+
+
+## Empaquetado | Estructura: Celery + Redis {.medium-par}
+
+![](imagenes/celery.png){.float-right width=20%  }
+![](imagenes/plus.png){.big-margin .float-right width=10%   }
+
+![](imagenes/logo-redis.png){.float-right width=25%  }
+
+::: incremental
+- Celery es una cola de _tasks_ asíncrona y distribuida.
+
+- Redis funciona como _broker_ y _backend_ de Celery, funcionando como data store _in-memory_.
+
+- Una vez comienza la _task_, la conexión con el cliente se corta y Celery se encarga de ejecutarla:
+  - Obtiene las predicciones para cada informe.
+  - Guarda los resultados en MinIO.
+  - Envía un mail de notificación con link de descarga.
+
+
+
+- En este contexto, Redis como _broker_ se encarga de la comunicación entre Flask y Celery y como _backend_ se encarga de guardar los resultados y el estado actual de la tarea.
+
+
+::: {.fragment}
+::: {.callout-note appearance="simple" }
+En este caso utilizamos un solo trabajador a la vez, por lo que no estamos 
+utilizando todas las capacidades de Celery.
+:::
+:::
+:::
+
+
+
+
+
+## Empaquetado | Estructura: MinIO {.medium-par}
+
+![](imagenes/minio-logo-4.png){.float-right width=30%  }
+
+::: incremental
+- MinIO actúa como capa de almacenamiento, por lo que aloja los archivos .zip que contienen
+los informes anonimizados.
+- Además, nos permite compartir un link de descarga que expira luego de un tiempo fijado por
+nosotros.
+
+:::
+
+## Conclusiones {.medium-par}
+
+::: incremental
+
+- Aprovechando los avances en visión de computadores y la capacidad de _fine-tuning_ de estos
+modelos, pudimos entrenar uno que realiza esta tarea específica con alta precisión.
+
+- Utilizando una arquitectura sencilla fue posible empaquetar el modelo, facilitando su
+ejecución a los usuarios finales.
+
+- Considerando que es un problema que podrían tener otras instituciones, el modelo tiene
+potencial de ser escalado.
 
 
 
