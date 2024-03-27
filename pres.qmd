@@ -299,8 +299,7 @@ ejecución a los usuarios finales.
 
 - Considerando que es un problema que podrían tener otras instituciones, el modelo tiene
 potencial de ser escalado.
-
-
+:::
 
 #
 
