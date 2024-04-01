@@ -10,6 +10,9 @@ format:
     preview-links: auto
     logo: imagenes/logo_portada2.png
     css: ine_quarto_styles.css
+    chalkboard: 
+      boardmarker-width: 20
+      buttons: false
     # footer: <https://quarto.org>
 ---
 
@@ -88,11 +91,11 @@ Presentacion falseamiento
 
 :::
 
-## Problemática (2/3)
+## Problemática (2/3) {chalkboard-buttons="true"}
 
 Ejemplo informe de cumplimiento:
 
-[<img src="imagenes/plots/informe_yo.jpg" width="70%"/>]{.center} 
+[<img src="imagenes/plots/ej_informe1.png" width="70%"/>]{.center} 
 
 
 ## Problemática (3/3)
@@ -132,10 +135,12 @@ Ejemplo informe de cumplimiento:
 
 - El modelo YOLOv *You Only Look Once*, es un modelo de detección de objetos proveniente del paquete *Ultralytics*, diseñado con deep learning. 
 
+- El modelo cuenta con 24 capas convolucionales y 2 capas de conexión completa.
+
 - Este modelo pre-entrenado posee diferentes versiones:
 
     [<img src="imagenes/plots/model_comparison.png" width="70%"/>]{.center}
-    
+
 - Toda la información disponible la pueden encontrar en su repositorio de [github](https://github.com/ultralytics/yolov5)
 
 :::
@@ -143,7 +148,7 @@ Ejemplo informe de cumplimiento:
 <br>
 
 
-## Modelamiento | Entrenamiento
+## Modelamiento | Entrenamiento (1/2)
 
 Para entrenar el modelo, se siguieron los siguientes pasos:
 
@@ -160,12 +165,28 @@ Para entrenar el modelo, se siguieron los siguientes pasos:
 
   - Para el etiquetado de imágenes se utilizó la aplicación [*make-sense*](https://github.com/SkalskiP/make-sense?tab=readme-ov-file), la cual podemos utilizar desde nuestro navegador o ejecutarlo en local.
   
-  - Las ventajas de esta aplicación es que es de libre uso, el formato de etiquetado es compatible con el requerido para entrenar el modelo YOLOv5 y es de fácil uso.
+    [<img src="imagenes/plots/ejemplo_make_sense.png" width="70%"/>]{.center}
   
+:::
+
+<br>
+
+
+## Modelamiento | Entrenamiento (2/2)
+
+:::{.incremental .medium-par}
+
+- **Paso 2**: Etiquetar imágenes
+  - Las ventajas de esta aplicación es que es de libre uso, el formato de etiquetado es compatible con el requerido para entrenar el modelo YOLOv5 y es de fácil uso.
+
   - Se etiquetaron al rededor de 1000 imágenes. 
   
-- **Paso 3**: Setting del modelo.*
+- **Paso 3**: Setting del modelo*
 
+  - Para el entrenamiento, se utilizan las 20 primeras capas pre-entrenadas, agregando 4 capas convolucionales y 2 capas de conexión completa.
+  
+  - Se realizaron 70 epoch, lo cual se demoró en ejecutar al rededor de 9 hrs
+  
 :::
 
 . . .
@@ -201,6 +222,10 @@ Una vez entrenado el modelo, la metodología para realizar la innominación sigu
   - Realizar unión de imágenes y generar pdf.
 
 :::
+
+
+
+
 
 
 ## Empaquetado | Ejemplo de uso
@@ -303,6 +328,12 @@ ejecución a los usuarios finales.
 
 - Considerando que es un problema que podrían tener otras instituciones, el modelo tiene
 potencial de ser escalado.
+
+- Actualmente, se pueden encontrar los informes innominados en el portal de transparencia [link](https://inechile.sharepoint.com/sites/Informesdecumplimiento/Documentos%20compartidos/Forms/AllItems.aspx?id=%2Fsites%2FInformesdecumplimiento%2FDocumentos%20compartidos%2FInformes%20de%20Cumplimiento&p=true&ga=1&LOF=1):
+
+  [[<img src="imagenes/plots/portal_transparencia.png" width="60%"/>]{.center}](https://www.portaltransparencia.cl/PortalPdT/directorio-de-organismos-regulados/?org=AH007)
+
+
 :::
 
 #

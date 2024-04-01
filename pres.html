@@ -34,6 +34,8 @@
   <link href="pres_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="pres_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="pres_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="pres_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="pres_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="pres_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
@@ -380,10 +382,10 @@ Presentacion falseamiento
 </ul>
 </div>
 </section>
-<section id="problemática-23" class="slide level2">
+<section id="problemática-23" class="slide level2" data-chalkboard-buttons="true">
 <h2>Problemática (2/3)</h2>
 <p>Ejemplo informe de cumplimiento:</p>
-<p><span class="center"><img src="imagenes/plots/informe_yo.jpg" width="70%"></span></p>
+<p><span class="center"><img src="imagenes/plots/ej_informe1.png" width="70%"></span></p>
 </section>
 <section id="problemática-33" class="slide level2">
 <h2>Problemática (3/3)</h2>
@@ -423,6 +425,7 @@ Presentacion falseamiento
 <div>
 <ul>
 <li class="fragment"><p>El modelo YOLOv <em>You Only Look Once</em>, es un modelo de detección de objetos proveniente del paquete <em>Ultralytics</em>, diseñado con deep learning.</p></li>
+<li class="fragment"><p>El modelo cuenta con 24 capas convolucionales y 2 capas de conexión completa.</p></li>
 <li class="fragment"><p>Este modelo pre-entrenado posee diferentes versiones:</p>
 <p><span class="center"><img src="imagenes/plots/model_comparison.png" width="70%"></span></p></li>
 <li class="fragment"><p>Toda la información disponible la pueden encontrar en su repositorio de <a href="https://github.com/ultralytics/yolov5">github</a></p></li>
@@ -430,8 +433,8 @@ Presentacion falseamiento
 </div>
 <p><br></p>
 </section>
-<section id="modelamiento-entrenamiento" class="slide level2">
-<h2>Modelamiento | Entrenamiento</h2>
+<section id="modelamiento-entrenamiento-12" class="slide level2">
+<h2>Modelamiento | Entrenamiento (1/2)</h2>
 <p>Para entrenar el modelo, se siguieron los siguientes pasos:</p>
 <div class="fragment">
 <div class="medium-par">
@@ -442,13 +445,29 @@ Presentacion falseamiento
 </ul></li>
 <li class="fragment"><p><strong>Paso 2</strong>: Etiquetar imágenes</p>
 <ul>
-<li class="fragment"><p>Para el etiquetado de imágenes se utilizó la aplicación <a href="https://github.com/SkalskiP/make-sense?tab=readme-ov-file"><em>make-sense</em></a>, la cual podemos utilizar desde nuestro navegador o ejecutarlo en local.</p></li>
+<li class="fragment"><p>Para el etiquetado de imágenes se utilizó la aplicación <a href="https://github.com/SkalskiP/make-sense?tab=readme-ov-file"><em>make-sense</em></a>, la cual podemos utilizar desde nuestro navegador o ejecutarlo en local.</p>
+<p><span class="center"><img src="imagenes/plots/ejemplo_make_sense.png" width="70%"></span></p></li>
+</ul></li>
+</ul>
+</div>
+<p><br></p>
+</div>
+</section>
+<section id="modelamiento-entrenamiento-22" class="slide level2">
+<h2>Modelamiento | Entrenamiento (2/2)</h2>
+<div class="medium-par">
+<ul>
+<li class="fragment"><p><strong>Paso 2</strong>: Etiquetar imágenes</p>
+<ul>
 <li class="fragment"><p>Las ventajas de esta aplicación es que es de libre uso, el formato de etiquetado es compatible con el requerido para entrenar el modelo YOLOv5 y es de fácil uso.</p></li>
 <li class="fragment"><p>Se etiquetaron al rededor de 1000 imágenes.</p></li>
 </ul></li>
-<li class="fragment"><p><strong>Paso 3</strong>: Setting del modelo.*</p></li>
+<li class="fragment"><p><strong>Paso 3</strong>: Setting del modelo*</p>
+<ul>
+<li class="fragment"><p>Para el entrenamiento, se utilizan las 20 primeras capas pre-entrenadas, agregando 4 capas convolucionales y 2 capas de conexión completa.</p></li>
+<li class="fragment"><p>Se realizaron 70 epoch, lo cual se demoró en ejecutar al rededor de 9 hrs</p></li>
+</ul></li>
 </ul>
-</div>
 </div>
 <div class="fragment">
 <p><br></p>
@@ -563,6 +582,8 @@ Presentacion falseamiento
 <li class="fragment"><p>Aprovechando los avances en visión de computadores y la capacidad de <em>fine-tuning</em> de estos modelos, pudimos entrenar uno que realiza esta tarea específica con alta precisión.</p></li>
 <li class="fragment"><p>Utilizando una arquitectura sencilla fue posible empaquetar el modelo, facilitando su ejecución a los usuarios finales.</p></li>
 <li class="fragment"><p>Considerando que es un problema que podrían tener otras instituciones, el modelo tiene potencial de ser escalado.</p></li>
+<li class="fragment"><p>Actualmente, se pueden encontrar los informes innominados en el portal de transparencia <a href="https://inechile.sharepoint.com/sites/Informesdecumplimiento/Documentos%20compartidos/Forms/AllItems.aspx?id=%2Fsites%2FInformesdecumplimiento%2FDocumentos%20compartidos%2FInformes%20de%20Cumplimiento&amp;p=true&amp;ga=1&amp;LOF=1">link</a>:</p>
+<p><a href="https://www.portaltransparencia.cl/PortalPdT/directorio-de-organismos-regulados/?org=AH007"><span class="center"><img src="imagenes/plots/portal_transparencia.png" width="60%"></span></a></p></li>
 </ul>
 </div>
 </section></section>
@@ -587,6 +608,7 @@ Presentacion falseamiento
   <script src="pres_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
   <script src="pres_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="pres_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="pres_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
   <script src="pres_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -608,7 +630,8 @@ Presentacion falseamiento
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":false,"boardmarkerWidth":20},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -779,7 +802,7 @@ Presentacion falseamiento
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
 
           RevealMath,
           RevealNotes,
