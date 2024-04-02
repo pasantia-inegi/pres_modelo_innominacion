@@ -93,6 +93,31 @@ Settings for text format
 ----------------------------------------------------------------------------------------------------
 */
 
+p .float-right{
+  float: right;
+  clear: right;
+  margin-right: 15px; !important
+  
+  
+}
+
+p .big-margin{
+  margin-right: 80px; !important
+  
+  
+}
+
+
+.callout.callout-style-default.my-callout .callout-body {
+    font-size: 0.5rem;
+}
+
+.reveal ol,.reveal dl,.reveal ul {
+    display: block;
+    text-align: left;
+    margin: 0 0 0 1em
+}
+
 .big-par { /*párrafo grande */
   font-size: 35px;
 }
