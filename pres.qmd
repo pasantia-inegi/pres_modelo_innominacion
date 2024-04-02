@@ -8,9 +8,11 @@ format:
     slide-number: true
     scrollable: true
     preview-links: auto
+    page-layout: custom
     logo: imagenes/logo_portada2.png
     css: ine_quarto_styles.css
     # footer: <https://quarto.org>
+engine: knitr
 ---
 
 #
