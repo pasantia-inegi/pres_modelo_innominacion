@@ -1,0 +1,412 @@
+---
+# title: "modelo de innominación de documento"
+# author: "Noviembre 2024"
+format:
+  revealjs:
+    auto-stretch: false
+    margin: 0
+    slide-number: true
+    scrollable: true
+    preview-links: auto
+    page-layout: custom
+    logo: imagenes/logo_portada2.png
+    css: ine_quarto_styles.css
+    chalkboard: 
+      boardmarker-width: 20
+      buttons: false
+    # footer: <https://quarto.org>
+engine: knitr
+---
+
+#
+
+
+<!---
+# TODO: this does not work
+ ![](imagenes/logo_portada2.png){.center style="width: 20%;"}   
+--->
+
+[]{.linea-superior} 
+[]{.linea-inferior} 
+
+<!---
+ <img src="imagenes/logo_portada2.png" style="width: 20%"/>  
+--->
+
+<img src="imagenes/logo_portada2.png" width="20%"/>  
+
+
+[**Aplicación innominación de informes de cumplimiento**]{.big-par .center-justified}
+
+[**Proyecto Ciencia de Datos**]{.medium-par.center-justified}
+
+[**Unidad de Gobierno de Datos**]{.small-par.center-justified}
+
+[**Noviembre 2024**]{.big-par .center-justified}
+
+
+## Contenidos  
+
+- Contexto 📄🤔
+
+- Flujo de trabajo ⚙️🔨
+
+    - Descripción modelo YOLOv5
+    
+    - Procesamiento de informes
+
+- Aplicación 🤖
+  
+- Conclusiones 🚀
+
+
+<!---
+ ![](imagenes/overview-mode.png){.border} 
+
+--->
+
+## Contexto (1/3)
+
+:::{.incremental .medium-par}
+
+- Por ley de transparencia activa, los órganos y servicios gubernamentales deben publicar las funciones administrativas del personal que se desempeñe en virtud de un contrato de trabajo.
+
+  [<img src="imagenes/plots/transparencia_activa1.PNG" width="70%"/>]{.center} 
+
+- En el caso del personal con contrato a honorarios, estos deben realizar mensualmente un informe de cumplimiento, en donde se describen las actividades realizas durante el mes.
+
+- En estos documentos, existe información confidencial de las personas: el RUN (Rol Único Nacional) y firma, los cuales deben ser **censurados** en la publicación.
+
+:::
+
+## Contexto (2/3) {chalkboard-buttons="true"}
+
+Ejemplo informe de cumplimiento:
+
+[<img src="imagenes/plots/ej_informe1.png" width="70%"/>]{.center} 
+
+
+## Contexto (3/3)
+
+. . .
+
+:::{.incremental .medium-par}
+
+- Cantidad de informes de cumplimiento de honorarios en el INE:
+
+    |Antes de CENSO| Durante de CENSO*|
+    |---|---|
+    |256|1519|
+    
+    [* *Cantidad identificada durante junio*]{.small-par .center}
+    
+    
+    
+- Lo cual se transforma en un trabajo manual muy extenso para la unidad de transparencia y atención ciudadana del INE.
+
+:::
+
+<br>
+
+. . . 
+
+[¿Cómo innominamos estos documentos?]{.center} 
+
+. . .
+
+[¡Creación de modelo con deep learning que detecte y censure runes y firmas 😃!]{.center} 
+
+
+
+## Flujo de trabajo | Descripción modelo YOLOv5
+
+:::{.incremental}
+
+- El modelo YOLO *You Only Look Once*, es un modelo de detección de objetos diseñado con transformadores de visión, los cuales nos ayudan a identificar patrones dentro de las imágenes. 
+
+    [<img src="imagenes/plots/img.jpg" width="70%"/>]{.center}
+
+:::
+
+
+
+## Flujo de trabajo | Descripción modelo YOLOv5
+
+:::{.incremental}
+
+- Este modelo pre-entrenado posee diferentes versiones:
+
+    [<img src="imagenes/plots/model_comparison.png" width="70%"/>]{.center}
+
+- Toda la información disponible la pueden encontrar en su repositorio de [github](https://github.com/ultralytics/yolov5)
+
+:::
+
+
+
+
+## Flujo de trabajo | Entrenamiento 
+
+
+Para entrenar el modelo, necesitamos datos que nos muestren donde están los objetos que queremos detectar. 
+
+. . .
+
+Para ello preparamos un dataset de la siguiente forma:
+
+. . .
+
+:::{.incremental .medium-par}
+
+- **Paso 1**: Procesar informe ➔ Transformar formato de pdf a imagen.
+  
+  
+- **Paso 2**: Etiquetar imágenes
+
+  - Para el etiquetado de imágenes se utilizó la aplicación [*make-sense*](https://github.com/SkalskiP/make-sense?tab=readme-ov-file) (opensource).
+  
+    [<img src="imagenes/plots/ejemplo_make_sense.png" width="70%"/>]{.center}
+    
+    Se etiquetaron aproximadamente **1300** imágenes.
+  
+:::
+
+<br>
+
+
+## Flujo de trabajo | Procesamiento de informes
+
+[<img src="imagenes/plots/Slide1.jpg" width = "105%"/>]{.center} 
+
+
+## Flujo de trabajo | Procesamiento de informes
+
+[<img src="imagenes/plots/Slide2.jpg" width = "105%"/>]{.center} 
+
+
+## Flujo de trabajo | Procesamiento de informes
+
+[<img src="imagenes/plots/Slide3.jpg" width = "105%"/>]{.center} 
+
+
+## Flujo de trabajo | Procesamiento de informes
+
+[<img src="imagenes/plots/Slide4.jpg" width = "105%"/>]{.center} 
+
+## Flujo de trabajo | Procesamiento de informes
+
+[<img src="imagenes/plots/Slide5.jpg" width = "105%"/>]{.center} 
+
+
+## Flujo de trabajo | Procesamiento de informes
+
+[<img src="imagenes/plots/Slide6.jpg" width = "105%"/>]{.center} 
+
+
+## Flujo de trabajo | Procesamiento de informes
+
+[<img src="imagenes/plots/Slide6.jpg" width = "105%"/>]{.center}
+
+
+## Aplicación 
+
+::: {.incremental .medium-par}
+
+- Todo este flujo ha sido posible gracias al trabajo colaborativo entre el equipo de arquitectura y ciencia de datos 👨‍💻 👩‍💻: 
+  
+  - Hugo Vega, Bernardino Ramirez, Felipe Jimenez, Juan Concha, Ricardo Pizzaro, Klaus Lehmann y Javiera Preuss.
+
+
+    [[<img src="imagenes/plots/aplicacion.png" width ="50%"/>]{.center}](https://informes-transparencia.ine.cl/)
+
+:::
+
+
+## Conclusiones {.medium-par}
+
+::: incremental
+
+- Este flujo fue aplicado durante ocho meses por el equipo PCD y durante los dos últimos meses por la unidad de transparencia.
+
+- Aprovechando los avances en visión de computadores y la capacidad de _fine-tuning_ de estos
+modelos, logramos entrenar uno que realiza esta tarea específica con alta precisión.
+
+- Utilizando una arquitectura sencilla fue posible empaquetar el modelo, facilitando su
+ejecución a los usuarios finales.
+
+- Considerando que es un problema que podrían tener otras instituciones, el modelo tiene
+potencial de ser escalado.
+
+- Actualmente, se pueden encontrar los informes innominados en el portal de transparencia [link](https://inechile.sharepoint.com/sites/Informesdecumplimiento/Documentos%20compartidos/Forms/AllItems.aspx?id=%2Fsites%2FInformesdecumplimiento%2FDocumentos%20compartidos%2FInformes%20de%20Cumplimiento&p=true&ga=1&LOF=1):
+
+  [[<img src="imagenes/plots/portal_transparencia.png" width="60%"/>]{.center}](https://www.portaltransparencia.cl/PortalPdT/directorio-de-organismos-regulados/?org=AH007)
+
+
+:::
+
+#
+
+[]{.linea-superior} 
+[]{.linea-inferior} 
+
+<!---
+ <img src="imagenes/logo_portada2.png" style="width: 20%"/>  
+--->
+
+<img src="imagenes/logo_portada2.png" width="20%"/>  
+
+
+[**Aplicación innominación de informes de cumplimiento**]{.big-par .center-justified}
+
+[**Proyecto Ciencia de Datos**]{.medium-par.center-justified}
+
+[**Unidad de Gobierno de Datos**]{.small-par.center-justified}
+
+[**Noviembre 2024**]{.big-par .center-justified}
+
+
+## ANEXO | Modelamiento- Descripción modelo YOLOv5
+
+:::{.incremental}
+
+- El modelo YOLOv *You Only Look Once*, es un modelo de detección de objetos proveniente del paquete *Ultralytics*, diseñado con deep learning. 
+
+- El modelo cuenta con 24 capas convolucionales y 2 capas de conexión completa.
+
+- Este modelo pre-entrenado posee diferentes versiones:
+
+    [<img src="imagenes/plots/model_comparison.png" width="70%"/>]{.center}
+
+- Toda la información disponible la pueden encontrar en su repositorio de [github](https://github.com/ultralytics/yolov5)
+
+:::
+
+<br>
+
+
+
+## ANEXO | Modelamiento- Entrenamiento (2/2)
+
+:::{.incremental .medium-par}
+
+- **Paso 2**: Etiquetar imágenes
+  - Las ventajas de esta aplicación es que es de libre uso, el formato de etiquetado es compatible con el requerido para entrenar el modelo YOLOv5 y es de fácil uso.
+
+  - Se etiquetaron al rededor de 1000 imágenes. 
+  
+- **Paso 3**: Setting del modelo*
+
+  - Para el entrenamiento, se utilizan las 20 primeras capas pre-entrenadas, agregando 4 capas convolucionales y 2 capas de conexión completa.
+  
+  - Se realizaron 70 epoch, lo cual se demoró en ejecutar al rededor de 9 hrs
+  
+:::
+
+. . .
+
+<br>
+
+[*Para más información de como entrenar modelos YOLOv, visitar el siguiente [link](https://docs.ultralytics.com/es/yolov5/tutorials/train_custom_data/)]{.small-par}
+
+
+## ANEXO | Modelamiento- Innominación de informes
+
+Una vez entrenado el modelo, la metodología para realizar la innominación sigue el siguiente flujo:
+
+. . .
+
+:::{.incremental .medium-par}
+
+- **Paso 1**: Procesar informe
+
+  - Transformar el formato de pdf a imagen.
+  
+  
+- **Paso 2**: Identificar RUN y firmas
+
+  - Para cada conjunto de imágenes de un informe, se identificaran las firmas y el run.
+  
+  - Una vez identificada la sección donde están los objetos, se ocultarán las secciones con un rectángulo negro.
+  
+  - En cada uno de los informes, en total debe existir un run y 2 firmas. En el caso de no cumplir esta condición, se etiquetará el documento como *informe dudoso* y se registrará para que el equipo encargado realice la revisión manual.
+  
+- **Paso 3**: Transformar el informe a su formato original
+
+  - Realizar unión de imágenes y generar pdf.
+
+:::
+
+
+
+## ANEXO | Empaquetado
+
+
+[<img src="imagenes/diagrama.png" width="100%"/>]{.center} 
+
+
+## ANEXO | Estructura: Flask {.medium-par}
+
+
+![](imagenes/flask-logo.png){.float-right width=25%  }
+
+
+
+- Flask es un _microframework_ para desarrollo web de backend, famoso por ser sencillo, liviano y flexible. Es la base de otros frameworks más complejos como FastAPI.
+
+- Flask funciona como backend de la aplicación, comunicándose con el frontend y manejando
+las lógicas de la aplicación: subida y extracción de informes, manejo de errores y éxitos,
+gestión de requests del cliente.
+
+- Una vez extraidos los informes, ocurren dos cosas: se da inicio a la _task_ que se encarga
+de anonimizar los informes y se le da fin al request, idealmente, con un mensaje de éxito.
+
+- La _task_ es manejada por Celery y Redis
+
+
+## ANEXO | Estructura: Celery + Redis {.medium-par}
+
+![](imagenes/celery.png){.float-right width=20%  }
+![](imagenes/plus.png){.big-margin .float-right width=10%   }
+
+![](imagenes/logo-redis.png){.float-right width=25%  }
+
+::: incremental
+- Celery es una cola de _tasks_ asíncrona y distribuida.
+
+- Redis funciona como _broker_ y _backend_ de Celery, funcionando como data store _in-memory_.
+
+- Una vez comienza la _task_, la conexión con el cliente se corta y Celery se encarga de ejecutarla:
+  - Obtiene las predicciones para cada informe.
+  - Guarda los resultados en MinIO.
+  - Envía un mail de notificación con link de descarga.
+
+
+
+- En este contexto, Redis como _broker_ se encarga de la comunicación entre Flask y Celery y como _backend_ se encarga de guardar los resultados y el estado actual de la tarea.
+
+
+::: {.fragment}
+::: {.callout-note appearance="simple" }
+En este caso utilizamos un solo trabajador a la vez, por lo que no estamos 
+utilizando todas las capacidades de Celery.
+:::
+:::
+:::
+
+
+
+
+
+## ANEXO | Estructura: MinIO {.medium-par}
+
+![](imagenes/minio-logo-4.png){.float-right width=30%  }
+
+::: incremental
+- MinIO actúa como capa de almacenamiento, por lo que aloja los archivos .zip que contienen
+los informes anonimizados.
+- Además, nos permite compartir un link de descarga que expira luego de un tiempo fijado por
+nosotros.
+
+:::
+
+
